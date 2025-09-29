@@ -1,0 +1,62 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Replace with your real embed URL:
+const GOOGLE_FORM_EMBED_URL =
+  "https://forms.gle/wwmkQL3inXK4Cb6d8";
+---
+
+<Base title="Contact — Pankaj Misra" description="Get in touch for speaking, advisory, and media.">
+  <style>
+    /* Responsive iframe wrapper (keeps a nice height, adjusts on mobile) */
+    .form-shell {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(6px);
+      overflow: hidden;
+    }
+    .form-frame {
+      width: 100%;
+      height: 80vh;              /* view height; tweak if you want shorter */
+      min-height: 720px;         /* keeps it tall enough on desktop */
+      border: 0;
+    }
+    @media (max-width: 640px) {
+      .form-frame {
+        height: 70vh;
+        min-height: 560px;
+      }
+    }
+  </style>
+
+  <section
+    class="text-white"
+    style="background:
+      radial-gradient(900px 360px at 70% -10%, rgba(201,162,39,.12), transparent 60%),
+      linear-gradient(180deg, #0b0d16 0%, #111315 100%);"
+  >
+    <div class="max-w-3xl mx-auto px-4 py-10">
+      <h1 class="text-3xl font-bold text-center">Contact</h1>
+      <p class="text-gray-300 text-center max-w-2xl mx-auto mt-2">
+        Speaking, advisory, and media. Use the form below and we’ll get back to you shortly.
+      </p>
+
+      <div class="form-shell mt-6">
+        <iframe
+          class="form-frame"
+          src={GOOGLE_FORM_EMBED_URL}
+          allow="clipboard-write; encrypted-media;"
+        >
+        </iframe>
+      </div>
+
+      <p class="text-gray-400 text-sm mt-4 text-center">
+        Trouble with the embed?&nbsp;
+        <a class="underline" href={GOOGLE_FORM_EMBED_URL.replace('?embedded=true','')} target="_blank" rel="noopener">
+          Open the form directly →
+        </a>
+      </p>
+    </div>
+  </section>
+</Base>
