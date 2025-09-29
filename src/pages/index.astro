@@ -36,17 +36,29 @@ const featured = books.find(b => b.slug === 'echoes-of-caldera') ?? books[0] ?? 
       </div>
 
       <!-- Content below hero -->
-      <div class="max-w-6xl mx-auto px-4 pt-6 md:pt-8 pb-10">
+            <!-- Centered Headline -->
+      <div class="text-center mt-6 md:mt-8">
         <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-          Bridging <span style="color:#C9A227">Human Potential</span> and <span style="color:#C9A227">Storytelling</span>.
+          Bridging <span class="text-indigo">Human Potential</span> and <span style="color:#C9A227">Storytelling</span>.
         </h1>
-        <p class="text-gray-300 mt-3 max-w-3xl">
-          Fiction that crackles with geoscience, history and an adventurous spirit. Professional writing on Banking, Insurance, Data, and AI enabled transformation.
-        </p>
-        <div class="mt-4 flex gap-3 flex-wrap">
-          <a class="btn-gold" href="/books">Explore Books</a>
-          <a class="btn-gold" href="/articles">Read Articles</a>
+      </div>
+
+      <!-- Supporting text in 2×2 grid -->
+      <div class="grid sm:grid-cols-2 gap-6 mt-6 max-w-4xl mx-auto text-gray-300 text-center">
+        <div class="p-3">
+          Fiction that crackles with geoscience, history and an adventurous spirit.
         </div>
+        <div class="p-3">
+          Professional writing on Banking, Insurance, Data, and AI-enabled transformation.
+        </div>
+      </div>
+
+      <!-- Centered golden buttons -->
+      <div class="mt-6 flex justify-center gap-4 flex-wrap">
+        <a class="btn-gold" href="/books">Explore Books</a>
+        <a class="btn-gold" href="/articles">Read Articles</a>
+      </div>
+
 
         <!-- Latest Book -->
         <div class="mt-10 md:mt-12">
