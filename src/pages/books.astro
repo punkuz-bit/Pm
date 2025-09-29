@@ -1,0 +1,57 @@
+---
+import Base from "../layouts/Base.astro";
+
+type Book = {
+  url: string;
+  frontmatter: {
+    title: string;
+    description?: string;
+    cover?: string;
+    date?: string;
+    tags?: string[];
+  }
+};
+
+// Eager-load all book MDX modules at build time
+const modules = import.meta.glob('../../content/books/*.mdx', { eager: true }) as Record<string, Book>;
+
+const books = Object.entries(modules)
+  .map(([path, mod]) => {
+    const slug = path.split('/').pop()?.replace('.mdx','') || '';
+    const fm = mod.frontmatter || {};
+    return {
+      slug,
+      title: fm.title,
+      description: fm.description ?? '',
+      cover: fm.cover ?? '',
+      date: fm.date ?? '',
+      tags: fm.tags ?? []
+    };
+  })
+  .sort((a,b)=> (b.date ?? '').localeCompare(a.date ?? ''));
+---
+
+<Base>
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-2">Books</h1>
+    <p class="text-gray-600 mb-6">Explore current and upcoming titles.</p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+      {books.map(b => (
+        <article class="card overflow-hidden flex flex-col" key={b.slug}>
+          {b.cover
+            ? <img src={b.cover} alt={b.title} class="w-full h-56 object-cover" />
+            : <div class="w-full h-56 bg-gray-200" />
+          }
+          <div class="p-4 flex-1 flex flex-col">
+            <h2 class="font-semibold text-lg">{b.title}</h2>
+            <p class="text-gray-700 text-sm mt-1 line-clamp-3">{b.description}</p>
+            <div class="mt-auto pt-3">
+              <a class="btn btn-primary" href={`/books/${b.slug}`}>View details →</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>
