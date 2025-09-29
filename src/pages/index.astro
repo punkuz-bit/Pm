@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+const hero = '/public/hero.jpg';
+---
+<Base>
+  <section class="text-white" style="background: radial-gradient(800px 300px at 70% -10%, rgba(201,162,39,.12), transparent 60%), linear-gradient(180deg, #0b0d16 0%, #111315 100%)">
+    <div class="max-w-5xl mx-auto px-4 py-16 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Author & Strategist bridging <span class="text-indigo">AI</span> and <span style="color:#C9A227">storytelling</span>.</h1>
+        <p class="text-gray-300 mt-3">Fiction that crackles with geoscience and myth. Professional writing on banking, data, and AI transformation.</p>
+        <div class="mt-4 flex gap-3">
+          <a class="btn btn-primary" href="/books">Explore Books</a>
+          <a class="btn btn-outline" href="/articles">Read Articles</a>
+        </div>
+      </div>
+      <div class="card overflow-hidden">
+        <img src={hero} alt="Hero" class="w-full h-64 object-cover" />
+      </div>
+    </div>
+  </section>
+</Base>
