@@ -1,0 +1,63 @@
+---
+import Base from "../layouts/Base.astro";
+
+type Post = {
+  url: string;
+  frontmatter: {
+    title: string;
+    description?: string;
+    date?: string;
+    tags?: string[];
+    linkedin?: string;
+  }
+};
+
+// Grab all article MDX modules at build time
+const modules = import.meta.glob('../../content/articles/*.mdx', { eager: true }) as Record<string, Post>;
+const posts = Object.entries(modules)
+  .map(([path, mod]) => {
+    const slug = path.split('/').pop()?.replace('.mdx','') || '';
+    return { 
+      slug, 
+      title: mod.frontmatter.title, 
+      description: mod.frontmatter.description ?? '',
+      date: mod.frontmatter.date ?? '',
+      tags: mod.frontmatter.tags ?? [],
+      linkedin: (mod.frontmatter as any).linkedin ?? ''
+    };
+  })
+  .sort((a,b) => (b.date ?? '').localeCompare(a.date ?? ''));
+---
+
+<Base>
+  <style>
+    /* 5-line clamp w/out Tailwind plugins */
+    .clamp-5{
+      display:-webkit-box;
+      -webkit-line-clamp:5;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+    }
+  </style>
+
+  <div class="max-w-5xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold mb-2">Professional Articles</h1>
+    <p class="text-gray-600 mb-6">Published on LinkedIn with on-site previews.</p>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      {posts.map(p => (
+        <article class="card p-5" key={p.slug}>
+          <h2 class="text-xl font-semibold">
+            <a href={`/articles/${p.slug}`}>{p.title}</a>
+          </h2>
+          <div class="text-xs text-gray-500 mb-2">{p.date}</div>
+          <p class="text-gray-700 clamp-5">{p.description}</p>
+          <div class="mt-3 flex gap-3">
+            <a class="text-indigo underline" href={`/articles/${p.slug}`}>Open preview →</a>
+            {p.linkedin && <a class="text-indigo underline" href={p.linkedin} target="_blank" rel="noopener">Read on LinkedIn →</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Base>
