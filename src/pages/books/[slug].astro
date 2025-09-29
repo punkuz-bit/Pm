@@ -42,10 +42,11 @@ const { title, description, cover, date, tags = [], buy = '' } = frontmatter || 
     )}
 
     {cover && (
-      <div class="mt-5">
-        <img src={cover} alt={title} class="w-full max-h-[420px] object-cover rounded-xl border" />
-      </div>
-    )}
+  <div class="mt-5 bg-black/40 rounded-xl border border-white/15 p-3 flex justify-center">
+    <img src={cover} alt={title} class="max-h-[480px] w-auto object-contain" />
+  </div>
+)}
+
 
     <div class="mt-5 flex gap-2 flex-wrap">
       {buy && <a class="btn btn-primary" href={buy} target="_blank" rel="noopener">Buy on Amazon</a>}
