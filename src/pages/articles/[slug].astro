@@ -1,0 +1,48 @@
+---
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../../content/articles/*.mdx');
+  // Build static paths: /articles/<slug>
+  return Object.keys(modules).map((filepath) => {
+    const slug = filepath.split('/').pop()?.replace('.mdx','') || '';
+    return { params: { slug } };
+  });
+}
+
+// Load the one that matches this slug
+const modules = import.meta.glob('../../../content/articles/*.mdx');
+const entry = Object.entries(modules).find(([path]) => path.endsWith(`${Astro.params.slug}.mdx`));
+
+if (!entry) {
+  throw new Error(`Article not found for slug: ${Astro.params.slug}`);
+}
+
+const mod: any = await entry[1]();
+const { Content, frontmatter } = mod;
+const { title, description, date, tags = [], linkedin = '' } = frontmatter || {};
+---
+
+<Base title={title} description={description}>
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <p><a href="/articles" class="text-indigo underline">← Back to Articles</a></p>
+    <h1 class="text-3xl font-bold mt-2">{title}</h1>
+    <div class="text-sm text-gray-500">{date}</div>
+
+    {linkedin && (
+      <div class="mt-4">
+        <a class="btn btn-outline" href={linkedin} target="_blank" rel="noopener">Read on LinkedIn →</a>
+      </div>
+    )}
+
+    <div class="prose max-w-none mt-6">
+      <Content />
+    </div>
+
+    {linkedin && (
+      <div class="mt-8">
+        <a class="btn btn-outline" href={linkedin} target="_blank" rel="noopener">Continue on LinkedIn →</a>
+      </div>
+    )}
+  </div>
+</Base>
