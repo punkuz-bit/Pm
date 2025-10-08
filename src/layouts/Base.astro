@@ -1,6 +1,7 @@
 ---
 import "../styles.css";
 const { title = 'Pankaj Misra — Author & Strategist', description = 'Books • Articles • Speaking • Advisory' } = Astro.props;
+const path = Astro.url.pathname;
 ---
 <html lang="en">
   <head>
@@ -8,94 +9,91 @@ const { title = 'Pankaj Misra — Author & Strategist', description = 'Books •
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <style>
+      /* Force nav links to be white by default (override global a{} gold) */
+      header nav a { color: #fff; text-decoration: none; }
+      header nav a:hover { color: #C9A227; }
+      header nav a.active { color: #C9A227; font-weight: 700; }
+    </style>
   </head>
-<body class="text-white"
-  style="background:
-    radial-gradient(900px 360px at 70% -10%, rgba(201,162,39,.12), transparent 60%),
-    linear-gradient(180deg, #0b0d16 0%, #111315 100%);">
+  <body class="text-white"
+    style="background:
+      radial-gradient(900px 360px at 70% -10%, rgba(201,162,39,.12), transparent 60%),
+      linear-gradient(180deg, #0b0d16 0%, #111315 100%);">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-black/30 border-b border-white/10">
-    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="/" class="font-extrabold text-white">
-        <span class="text-[#D8DBE2]">Pankaj</span> <span style="color:#C9A227">Misra</span>
-      </a>
-      <ul class="flex gap-4 font-semibold">
-  <li>
-    <a href="/books"
-       class={`hover:text-[#C9A227] ${
-         Astro.url.pathname === '/books' ? 'text-[#C9A227] font-bold' : ''
-       }`}>
-       Books
-    </a>
-  </li>
-  <li>
-    <a href="/articles"
-       class={`hover:text-[#C9A227] ${
-         Astro.url.pathname === '/articles' ? 'text-[#C9A227] font-bold' : ''
-       }`}>
-       Articles
-    </a>
-  </li>
-  <li>
-    <a href="/about"
-       class={`hover:text-[#C9A227] ${
-         Astro.url.pathname === '/about' ? 'text-[#C9A227] font-bold' : ''
-       }`}>
-       About
-    </a>
-  </li>
-  <li>
-    <a href="/speaking"
-       class={`hover:text-[#C9A227] ${
-         Astro.url.pathname === '/speaking' ? 'text-[#C9A227] font-bold' : ''
-       }`}>
-       Speaking
-    </a>
-  </li>
-  <li>
-    <a href="/contact"
-       class={`hover:text-[#C9A227] ${
-         Astro.url.pathname === '/contact' ? 'text-[#C9A227] font-bold' : ''
-       }`}>
-       Connect
-    </a>
-  </li>
-</ul>
-
-    </nav>
-  </header>
-
-  <!-- Main -->
-  <main class="min-h-[60vh]">
-    <slot />
-  </main>
-
-  <!-- Footer -->
-  <footer class="mt-16 border-t border-white/10 bg-black/30">
-    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-gray-200">
-      <div>
-        <div class="font-extrabold text-white"><span class="text-[#D8DBE2]">Pankaj</span> <span style="color:#C9A227">Misra</span></div>
-        <p class="text-sm mt-2">© {new Date().getFullYear()} Pankaj Misra. Books published by
-          <a class="underline text-[#C9A227]" href="https://himantrix.com" target="_blank">HiMantrix</a>.
-        </p>
-      </div>
-      <div>
-        <strong class="text-white">Explore</strong>
-        <ul class="space-y-1 mt-2 text-sm">
-          <li><a class="hover:text-[#C9A227]" href="/books">Books</a></li>
-          <li><a class="hover:text-[#C9A227]" href="/articles">Articles</a></li>
-          <li><a class="hover:text-[#C9A227]" href="/about">About</a></li>
-          <li><a class="hover:text-[#C9A227]" href="/speaking">Speaking</a></li>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-black/30 border-b border-white/10">
+      <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="/" class="font-extrabold text-white">
+          <span class="text-[#D8DBE2]">Pankaj</span> <span style="color:#C9A227">Misra</span>
+        </a>
+        <ul class="flex gap-4 font-semibold">
+          <li>
+            <a href="/books"
+               class={`hover:text-[#C9A227] ${path.startsWith('/books') ? 'active' : ''}`}>
+               Books
+            </a>
+          </li>
+          <li>
+            <a href="/articles"
+               class={`hover:text-[#C9A227] ${path.startsWith('/articles') ? 'active' : ''}`}>
+               Articles
+            </a>
+          </li>
+          <li>
+            <a href="/about"
+               class={`hover:text-[#C9A227] ${path === '/about' ? 'active' : ''}`}>
+               About
+            </a>
+          </li>
+          <li>
+            <a href="/speaking"
+               class={`hover:text-[#C9A227] ${path === '/speaking' ? 'active' : ''}`}>
+               Speaking
+            </a>
+          </li>
+          <li>
+            <a href="/contact"
+               class={`hover:text-[#C9A227] ${path === '/contact' ? 'active' : ''}`}>
+               Connect
+            </a>
+          </li>
         </ul>
+      </nav>
+    </header>
+
+    <!-- Main -->
+    <main class="min-h-[60vh]">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-white/10 bg-black/30">
+      <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-gray-200">
+        <div>
+          <div class="font-extrabold text-white">
+            <span class="text-[#D8DBE2]">Pankaj</span> <span style="color:#C9A227">Misra</span>
+          </div>
+          <p class="text-sm mt-2">© {new Date().getFullYear()} Pankaj Misra. Books published by
+            <a class="underline text-[#C9A227]" href="https://himantrix.com" target="_blank">HiMantrix</a>.
+          </p>
+        </div>
+        <div>
+          <strong class="text-white">Explore</strong>
+          <ul class="space-y-1 mt-2 text-sm">
+            <li><a class="hover:text-[#C9A227]" href="/books">Books</a></li>
+            <li><a class="hover:text-[#C9A227]" href="/articles">Articles</a></li>
+            <li><a class="hover:text-[#C9A227]" href="/about">About</a></li>
+            <li><a class="hover:text-[#C9A227]" href="/speaking">Speaking</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong class="text-white">Connect</strong>
+          <ul class="space-y-1 mt-2 text-sm">
+            <li><a class="hover:text-[#C9A227]" href="/contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <strong class="text-white">Connect</strong>
-        <ul class="space-y-1 mt-2 text-sm">
-          <li><a class="hover:text-[#C9A227]" href="/contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
-</body>
+    </footer>
+  </body>
 </html>
