@@ -17,3 +17,33 @@ a:hover { opacity:.9; }
 .btn { display:inline-block; padding:.6rem 1.1rem; border-radius:.75rem; font-weight:700; }
 .btn-primary, .btn-gold { border:1px solid #C9A227; background:#C9A227; color:#0b0d16; }
 .btn-outline { border:1px solid #C9A227; color:#C9A227; background:transparent; }
+/* Dark defaults: readable text on obsidian */
+:root {
+  --pm-ink: #e5e7eb;    /* light gray for body */
+  --pm-ink-dim: #cbd5e1;/* dimmer */
+  --pm-gold: #C9A227;   /* brand gold */
+  --pm-silver: #D8DBE2; /* brand silver */
+}
+
+body, p, li, .meta, .prose, .prose p, .prose li {
+  color: var(--pm-ink);
+}
+
+h1,h2,h3,h4,h5,h6 { color:#fff; }
+
+/* All plain links readable on dark */
+a { color: var(--pm-gold); }
+a:hover { opacity:.9; }
+
+/* Gold buttons (same as homepage) */
+.btn-gold {
+  display:inline-block; padding:.6rem 1.1rem; border-radius:.75rem;
+  font-weight:700; border:1px solid var(--pm-gold);
+  background: var(--pm-gold); color:#0b0d16;
+}
+.btn-gold:hover{opacity:.9}
+.btn-outline-gold{
+  display:inline-block; padding:.6rem 1.1rem; border-radius:.75rem;
+  font-weight:700; border:1px solid var(--pm-gold);
+  color: var(--pm-gold); background: transparent;
+}
