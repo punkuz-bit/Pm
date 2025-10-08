@@ -9,71 +9,57 @@ const { title = 'Pankaj Misra — Author & Strategist', description = 'Books •
     <meta name="description" content={description} />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body>
-    <header class="sticky top-0 z-50 backdrop-blur bg-white/90 border-b">
-      <nav class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-        <a href="/" class="font-extrabold"><span class="text-indigo">Pankaj</span> <span style="color:#C9A227">Misra</span></a>
-        <ul class="flex gap-4 font-semibold">
-  <li>
-    <a href="/books"
-       class={`hover:text-indigo ${Astro.url.pathname.startsWith('/books') ? 'text-indigo font-bold' : ''}`}>
-       Books
-    </a>
-  </li>
-  <li>
-    <a href="/articles"
-       class={`hover:text-indigo ${Astro.url.pathname.startsWith('/articles') ? 'text-indigo font-bold' : ''}`}>
-       Articles
-    </a>
-  </li>
-  <li>
-    <a href="/about"
-       class={`hover:text-indigo ${Astro.url.pathname === '/about' ? 'text-indigo font-bold' : ''}`}>
-       About
-    </a>
-  </li>
-  <li>
-    <a href="/speaking"
-       class={`hover:text-indigo ${Astro.url.pathname === '/speaking' ? 'text-indigo font-bold' : ''}`}>
-       Speaking
-    </a>
-  </li>
-  <li>
-    <a href="/contact"
-       class={`hover:text-indigo ${Astro.url.pathname === '/contact' ? 'text-indigo font-bold' : ''}`}>
-       Connect
-    </a>
-  </li>
-</ul>
+<body class="text-white"
+  style="background:
+    radial-gradient(900px 360px at 70% -10%, rgba(201,162,39,.12), transparent 60%),
+    linear-gradient(180deg, #0b0d16 0%, #111315 100%);">
 
-      </nav>
-    </header>
-    <main class="min-h-[60vh]">
-      <slot />
-    </main>
-    <footer class="mt-16 bg-[color:#0b0d16] text-gray-300">
-      <div class="max-w-5xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6">
-        <div>
-          <div class="font-extrabold"><span class="text-indigo">Pankaj</span> <span style="color:#C9A227">Misra</span></div>
-          <p class="text-sm mt-2">© {new Date().getFullYear()} Pankaj Misra. Books published by <a class="underline" href="https://himantrix.com" target="_blank">HiMantrix</a>.</p>
-        </div>
-        <div>
-          <strong>Explore</strong>
-          <ul class="space-y-1 mt-2 text-sm">
-            <li><a href="/books">Books</a></li>
-            <li><a href="/articles">Articles</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/speaking">Speaking</a></li>
-          </ul>
-        </div>
-        <div>
-          <strong>Connect</strong>
-          <ul class="space-y-1 mt-2 text-sm">
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/#newsletter">Newsletter</a></li>
-          </ul>
-        </div>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-black/30 border-b border-white/10">
+    <nav class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="font-extrabold text-white">
+        <span class="text-indigo">Pankaj</span> <span style="color:#C9A227">Misra</span>
+      </a>
+      <ul class="flex gap-4 font-semibold">
+        <li><a href="/books" class={`hover:text-[#C9A227] ${Astro.url.pathname.startsWith('/books') ? 'text-[#C9A227] font-bold' : ''}`}>Books</a></li>
+        <li><a href="/articles" class={`hover:text-[#C9A227] ${Astro.url.pathname.startsWith('/articles') ? 'text-[#C9A227] font-bold' : ''}`}>Articles</a></li>
+        <li><a href="/about" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/about' ? 'text-[#C9A227] font-bold' : ''}`}>About</a></li>
+        <li><a href="/speaking" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/speaking' ? 'text-[#C9A227] font-bold' : ''}`}>Speaking</a></li>
+        <li><a href="/contact" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/contact' ? 'text-[#C9A227] font-bold' : ''}`}>Connect</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="min-h-[60vh]">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-16 border-t border-white/10 bg-black/30">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-gray-200">
+      <div>
+        <div class="font-extrabold text-white"><span class="text-indigo">Pankaj</span> <span style="color:#C9A227">Misra</span></div>
+        <p class="text-sm mt-2">© {new Date().getFullYear()} Pankaj Misra. Books published by
+          <a class="underline text-[#C9A227]" href="https://himantrix.com" target="_blank">HiMantrix</a>.
+        </p>
       </div>
-    </footer>
-  </body>
+      <div>
+        <strong class="text-white">Explore</strong>
+        <ul class="space-y-1 mt-2 text-sm">
+          <li><a class="hover:text-[#C9A227]" href="/books">Books</a></li>
+          <li><a class="hover:text-[#C9A227]" href="/articles">Articles</a></li>
+          <li><a class="hover:text-[#C9A227]" href="/about">About</a></li>
+          <li><a class="hover:text-[#C9A227]" href="/speaking">Speaking</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong class="text-white">Connect</strong>
+        <ul class="space-y-1 mt-2 text-sm">
+          <li><a class="hover:text-[#C9A227]" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
