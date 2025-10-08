@@ -31,7 +31,7 @@ const { title, description, date, tags = [], linkedin = '' } = frontmatter || {}
 
     {linkedin && (
       <div class="mt-4">
-        <a class="btn btn-outline" href={linkedin} target="_blank" rel="noopener">Read on LinkedIn →</a>
+        <a class="btn-gold" href={linkedin} target="_blank" rel="noopener">Read on LinkedIn →</a>
       </div>
     )}
 {frontmatter.thumb && (
@@ -46,8 +46,19 @@ const { title, description, date, tags = [], linkedin = '' } = frontmatter || {}
 
     {linkedin && (
       <div class="mt-8">
-        <a class="btn btn-outline" href={linkedin} target="_blank" rel="noopener">Continue on LinkedIn →</a>
+        <a class="btn-gold" href={linkedin} target="_blank" rel="noopener">Continue on LinkedIn →</a>
       </div>
     )}
   </div>
+<style>
+  .btn-gold{
+    display:inline-block; padding:.6rem 1.1rem; border-radius:.75rem;
+    font-weight:700; border:1px solid var(--pm-gold);
+    background: var(--pm-gold); color:#0b0d16;
+  }
+  .btn-gold:hover{opacity:.9}
+  /* Make links inside the MDX body readable */
+  .prose a { color: var(--pm-gold); text-decoration: underline; }
+</style>
+
 </Base>
