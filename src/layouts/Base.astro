@@ -21,12 +21,48 @@ const { title = 'Pankaj Misra — Author & Strategist', description = 'Books •
         <span class="text-[#D8DBE2]">Pankaj</span> <span style="color:#C9A227">Misra</span>
       </a>
       <ul class="flex gap-4 font-semibold">
-        <li><a href="/books" class={`hover:text-[#C9A227] ${Astro.url.pathname.startsWith('/books') ? 'text-[#C9A227] font-bold' : ''}`}>Books</a></li>
-        <li><a href="/articles" class={`hover:text-[#C9A227] ${Astro.url.pathname.startsWith('/articles') ? 'text-[#C9A227] font-bold' : ''}`}>Articles</a></li>
-        <li><a href="/about" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/about' ? 'text-[#C9A227] font-bold' : ''}`}>About</a></li>
-        <li><a href="/speaking" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/speaking' ? 'text-[#C9A227] font-bold' : ''}`}>Speaking</a></li>
-        <li><a href="/contact" class={`hover:text-[#C9A227] ${Astro.url.pathname === '/contact' ? 'text-[#C9A227] font-bold' : ''}`}>Connect</a></li>
-      </ul>
+  <li>
+    <a href="/books"
+       class={`hover:text-[#C9A227] ${
+         Astro.url.pathname === '/books' ? 'text-[#C9A227] font-bold' : ''
+       }`}>
+       Books
+    </a>
+  </li>
+  <li>
+    <a href="/articles"
+       class={`hover:text-[#C9A227] ${
+         Astro.url.pathname === '/articles' ? 'text-[#C9A227] font-bold' : ''
+       }`}>
+       Articles
+    </a>
+  </li>
+  <li>
+    <a href="/about"
+       class={`hover:text-[#C9A227] ${
+         Astro.url.pathname === '/about' ? 'text-[#C9A227] font-bold' : ''
+       }`}>
+       About
+    </a>
+  </li>
+  <li>
+    <a href="/speaking"
+       class={`hover:text-[#C9A227] ${
+         Astro.url.pathname === '/speaking' ? 'text-[#C9A227] font-bold' : ''
+       }`}>
+       Speaking
+    </a>
+  </li>
+  <li>
+    <a href="/contact"
+       class={`hover:text-[#C9A227] ${
+         Astro.url.pathname === '/contact' ? 'text-[#C9A227] font-bold' : ''
+       }`}>
+       Connect
+    </a>
+  </li>
+</ul>
+
     </nav>
   </header>
 
