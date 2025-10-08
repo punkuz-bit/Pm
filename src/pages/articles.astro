@@ -34,15 +34,54 @@ const posts = Object.entries(modules)
 
 <Base>
   <style>
-    .card{background:#fff;border:1px solid #e5e7eb;border-radius:14px}
-    .thumb{width:100%;height:160px;object-fit:cover;border-top-left-radius:14px;border-top-right-radius:14px}
-    @media (min-width: 640px){
-      .row{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start}
-      .thumb{height:140px;border-radius:12px}
-      .thumb-wrap{border-radius:12px;overflow:hidden}
-      .card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(6px)}
+  /* Card and thumbnail styling */
+  .card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(201, 162, 39, 0.2);
+  }
+
+  /* Thumbnail container */
+  .thumb-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+    background: #0b0d16;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Uniform image size, contained instead of cropped */
+  .thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;            /* 👈 ensures full image visible */
+    background-color: #0b0d16;      /* fallback behind transparent PNGs */
+    border: 1px solid rgba(201, 162, 39, 0.25); /* subtle gold border */
+    box-shadow: 0 0 8px rgba(201, 162, 39, 0.15); /* soft golden glow */
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .thumb:hover {
+    box-shadow: 0 0 14px rgba(201, 162, 39, 0.35);
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 640px) {
+    .thumb-wrap {
+      height: 160px;
     }
-  </style>
+  }
+</style>
+
 
   <div class="max-w-5xl mx-auto px-4 py-10">
     <h2 class="text-3xl font-bold mb-2">Professional Articles</h2>
